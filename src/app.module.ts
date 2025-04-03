@@ -1,21 +1,20 @@
-import { Module } from "@nestjs/common"
-import { TypeOrmModule } from "@nestjs/typeorm"
-import { UsersModule } from "./users/users.module"
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import * as cors from 'cors';
+import { DatabaseModule } from './config/database/database.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: "mysql",
-      host: "localhost",
-      port: 3306,
-      username: "root",
-      password: "root",
-      database: "crud_users",
-      entities: [__dirname + "/**/*.entity{.ts,.js}"],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
+    DatabaseModule,
     UsersModule,
   ],
 })
-export class AppModule {}
-
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(cors()).forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
