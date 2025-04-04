@@ -6,6 +6,11 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import type { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import {
+  paginate,
+  type Pagination,
+  type IPaginationOptions,
+} from 'nestjs-typeorm-paginate';
 import { User } from './entities/user.entity';
 import type { CreateUserDto } from './dto/create-user.dto';
 import type { UpdateUserDto } from './dto/update-user.dto';
@@ -42,18 +47,22 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-  async findAll(): Promise<User[]> {
-    return this.usersRepository.find({
-      select: [
-        'id',
-        'name',
-        'email',
-        'matricula',
-        'isActive',
-        'createdAt',
-        'updatedAt',
-      ],
-    });
+  async findAll(options: IPaginationOptions): Promise<Pagination<User>> {
+    const queryBuilder = this.usersRepository.createQueryBuilder('user');
+
+    queryBuilder.select([
+      'user.id',
+      'user.name',
+      'user.email',
+      'user.matricula',
+      'user.isActive',
+      'user.createdAt',
+      'user.updatedAt',
+    ]);
+
+    queryBuilder.orderBy('user.createdAt', 'DESC');
+
+    return paginate<User>(queryBuilder, options);
   }
 
   async findOne(id: string): Promise<User> {
@@ -71,7 +80,7 @@ export class UsersService {
     });
 
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(`Usuário com ID ${id} não encontrado`);
     }
 
     return user;
@@ -81,7 +90,7 @@ export class UsersService {
     const user = await this.usersRepository.findOne({ where: { id } });
 
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(`Usuário com ID ${id} não encontrado`);
     }
 
     if (updateUserDto.email && updateUserDto.email !== user.email) {
