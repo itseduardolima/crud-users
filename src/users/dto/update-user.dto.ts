@@ -9,7 +9,7 @@ import {
 import { ApiProperty, OmitType } from '@nestjs/swagger';
 import { User } from '../entities/user.entity';
 
-export class UpdateUserDto extends OmitType(User, ['password', 'id', 'createdAt', 'updatedAt',]) {
+export class UpdateUserDto extends OmitType(User, ['id', 'createdAt', 'updatedAt',]) {
   @ApiProperty()
   @IsNotEmpty({ message: 'Nome é obrigatório' })
   @IsString()
@@ -29,4 +29,16 @@ export class UpdateUserDto extends OmitType(User, ['password', 'id', 'createdAt'
   @IsNotEmpty({ message: 'Matrícula é obrigatória' })
   @Matches(/^[0-9]+$/, { message: 'Matrícula deve conter apenas números' })
   matricula: string;
+
+  @ApiProperty({
+    example: 'abc123',
+  })
+  @IsNotEmpty({ message: 'Senha é obrigatória' })
+  @MinLength(6, { message: 'Senha deve ter pelo menos 6 caracteres' })
+  @Matches(/[a-zA-Z]/, { message: 'Senha deve ter pelo menos 1 letra' })
+  @Matches(/[0-9]/, { message: 'Senha deve ter pelo menos 1 número' })
+  @Matches(/^[a-zA-Z0-9]+$/, {
+    message: 'Senha deve conter apenas letras e números',
+  })
+  password: string;
 }

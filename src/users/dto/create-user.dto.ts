@@ -39,7 +39,6 @@ export class CreateUserDto extends OmitType(User, [
   })
   @IsNotEmpty({ message: 'Senha é obrigatória' })
   @MinLength(6, { message: 'Senha deve ter pelo menos 6 caracteres' })
-  @MaxLength(6, { message: 'Senha deve ter no máximo 6 caracteres' })
   @Matches(/[a-zA-Z]/, { message: 'Senha deve ter pelo menos 1 letra' })
   @Matches(/[0-9]/, { message: 'Senha deve ter pelo menos 1 número' })
   @Matches(/^[a-zA-Z0-9]+$/, {
