@@ -1,85 +1,137 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API CRUD de Usuários com NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Uma API RESTful completa para gerenciamento de usuários construída com NestJS, TypeORM e MySQL. Este projeto implementa uma aplicação CRUD completa com validação, paginação, funcionalidade de busca e documentação Swagger.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Funcionalidades
 
-## Description
+- 🔐 Gerenciamento completo de usuários (Criar, Ler, Atualizar, Excluir)
+- ✅ Validação de entrada com class-validator
+- 📝 Documentação da API com Swagger
+- 📊 Paginação com nestjs-typeorm-paginate
+- 🔍 Funcionalidade de busca
+- 🔒 Criptografia de senha com bcrypt
+- 🧩 UUID para IDs de usuários
+- 🌐 Suporte a CORS
+- ⚙️ Configuração baseada em variáveis de ambiente
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tecnologias
 
-## Project setup
+- [NestJS](https://nestjs.com/) - Um framework progressivo para Node.js
+- [TypeORM](https://typeorm.io/) - ORM para TypeScript e JavaScript
+- [MySQL](https://www.mysql.com/) - Banco de dados relacional
+- [Swagger](https://swagger.io/) - Documentação da API
+- [class-validator](https://github.com/typestack/class-validator) - Validação
+- [nestjs-typeorm-paginate](https://www.npmjs.com/package/nestjs-typeorm-paginate) - Paginação
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - Criptografia de senha
 
-```bash
-$ npm install
-```
+## Pré-requisitos
 
-## Compile and run the project
+- Node.js
+- MySQL 
+- npm
 
-```bash
-# development
-$ npm run start
+## Instalação
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+1. Clone o repositório:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/itseduardolima/crud-users.git
+cd crud-users
 ```
 
-## Resources
+2. Instale as dependências:
 
-Check out a few resources that may come in handy when working with NestJS:
+```shell
+npm install
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+3. Crie um arquivo `.env` no diretório raiz com as seguintes variáveis,:
 
-## Support
+```plaintext
+DB_TYPE=mysql
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=
+DB_SYNCHRONIZE=true
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+4. Inicie a aplicação:
 
-## Stay in touch
+```shell
+npm start
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
-## License
+## Documentação da API
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+A documentação Swagger está disponível em [http://localhost:3000/swagger](http://localhost:3000/swagger) quando a aplicação estiver em execução.
+
+### Endpoints
+
+| Método | Endpoint   | Descrição                          |
+|--------|------------|------------------------------------|
+| GET    | /users     | Obter todos os usuários (com paginação e busca) |
+| GET    | /users/:id | Obter um usuário específico por ID |
+| POST   | /users     | Criar um novo usuário              |
+| PATCH  | /users/:id | Atualizar um usuário               |
+| DELETE | /users/:id | Excluir um usuário                 |
+
+### Paginação
+
+A API suporta paginação para o endpoint `/users`:
+
+```plaintext
+GET /users?page=1&limit=10
+```
+
+### Busca
+
+Você pode buscar usuários pelo nome:
+
+```plaintext
+GET /users?search=João
+```
+
+Você pode combinar busca com paginação:
+
+```plaintext
+GET /users?search=João&page=1&limit=10
+```
+
+## Validação de Dados
+
+A API implementa as seguintes regras de validação:
+
+1. **Nome** - Apenas letras
+2. **Email** - Formato de email válido
+3. **Matrícula** - Apenas números
+4. **Senha** - Alfanumérica, 6 caracteres
+5. Todos os campos são obrigatórios
+
+## Estrutura do Projeto
+
+```plaintext
+src/
+├── app.module.ts              # Módulo principal da aplicação
+├── main.ts                    # Ponto de entrada da aplicação
+├── common/                    # Utilitários comuns e DTOs
+│   ├── dto/
+│   │   └── pagination-query.dto.ts
+├── config/                    # Módulos de configuração
+│   └── database/
+│       ├── database.module.ts
+│       └── database-config.service.ts
+└── users/                     # Módulo de usuários
+    ├── dto/
+    │   ├── create-user.dto.ts
+    │   ├── update-user.dto.ts
+    │   └── search-user.dto.ts
+    ├── entities/
+    │   └── user.entity.ts
+    ├── users.controller.ts
+    ├── users.module.ts
+    └── users.service.ts
+```
